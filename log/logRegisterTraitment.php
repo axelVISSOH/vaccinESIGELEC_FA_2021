@@ -4,7 +4,7 @@ require_once("../bdd/bddconection.inc.php");
 
         if ($_POST['form_function']=="logIn"){
             if(isset($_POST['mail']) AND isset($_POST['pswd'])){               
-                $req = $bdd->prepare('SELECT vst_name, vst_surname, vst_pass FROM visitor_vst WHERE vst_mail = ?');
+                $req = $bdd->prepare('SELECT vst_name, vst_surname, vst_pass, vst_type FROM visitor_vst WHERE vst_mail = ?');
                 $req->execute(array($_POST['mail']));
                 $response = $req->fetch();
                 if(!$response){
@@ -14,7 +14,16 @@ require_once("../bdd/bddconection.inc.php");
                     if(password_verify($_POST['pswd'], $response['vst_pass'])){
                         $_SESSION['name'] = htmlspecialchars($response['vst_name']);
                         $_SESSION['surname'] = htmlspecialchars($response['vst_surname']);
-                        header('Location: ../student/studentPage.php'); 
+                        $_SESSION['mail'] = htmlspecialchars($_POST['mail']);
+                        if($response['vst_type']=="student"){
+                            header('Location: ../student/studentNiche.php'); 
+                        }
+                        elseif($response['vst_type']=="medecin"){
+                            header('Location: ../medecin/medecinNiche.php');
+                        }
+                        else{
+                            header('Location: ../admin/adminMedecin.php');
+                        }                            
                     }
                     else{?>
                         <script>
@@ -25,8 +34,7 @@ require_once("../bdd/bddconection.inc.php");
                         echo '<script> alert(\'Wrong identifiers\');
                                 </script>';
                         header('Location: ../log/login.php');
-                    }
-                    
+                    }                    
                 }
             }  
         }
@@ -41,13 +49,13 @@ require_once("../bdd/bddconection.inc.php");
                     echo "you're registered"; 
                 }
                 else{
-                    header('Location: ../log/login.php');
+                    header('Location: ../log/signup.php');
                     echo "Informations don't match"; 
                 }
             }
             else{
                 echo "Fill all the fields";
-                header('Location: ../log/login.php'); 
+                header('Location: ../log/signup.php'); 
             } 
         }
     ?>
