@@ -2,22 +2,20 @@
       <div class="col">
         <h5>Copyright &copy; esigelec 2021</h5>
         <ul class="nav flex-column">
-            <li class="nav-item mb-2"> Créer par esigelec </li>
+            <li class="nav-item mb-2"> Créer par les étudiants de l'Esigelec </li>
         </ul>
-      </div>
-      
+      </div>      
       <div class="col">
         <h5>Nous contacter</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2">Mail: esigelec.irseem@yahoo.fr </li>
           <li class="nav-item mb-2">Numéro de Tel : + (0) 2 55 75 95 86</li>
         </ul>
-      </div>
-      
+      </div>      
       <div class="col">
           <h5>Découvrir Esigelec</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Qui sommes-nous ?</a></li>
+            <li class="nav-item mb-2"><a href="https://www.esigelec.fr/fr" class="nav-link p-0 text-muted">Qui sommes-nous ?</a></li>
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">D'où venons nous ?</a></li>
           </ul>
       </div>
