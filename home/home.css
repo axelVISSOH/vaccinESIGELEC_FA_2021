@@ -1,7 +1,35 @@
-.info .col{
-    margin-top: 50px;
-    padding: 20px;
+body{
+    background-image: url("../home/vaccin.gif");
 }
-.col img {
-    width: 500px;
+
+.left{
+    margin: 15px; 
+}
+
+.right{
+    margin-top: 100px;
+}
+.right p{
+    text-align: justify;
+    font-size: 20px;
+}
+.info{
+    color: red;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.infoT{
+    text-align: center;
+    font-size: 40px;
+}
+
+footer{
+    background-color: dimgray;
+    padding: 15px;
+}
+footer a{
+    color: white;
+}
+footer .col{
+    margin: 10px;
 }
