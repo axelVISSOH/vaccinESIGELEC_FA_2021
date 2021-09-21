@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once("../bdd/bddconection.inc.php");
@@ -43,8 +44,8 @@ require_once("../bdd/bddconection.inc.php");
                 if($_POST['mail']==$_POST['confirmmail'] AND $_POST['pswd']==$_POST['confirmpswd']){
                     $pass_hache = password_hash($_POST['pswd'], PASSWORD_DEFAULT);
                     $date = explode('/',$_POST['birthdate']); 
-                    $req = $bdd->prepare('INSERT INTO visitor_vst (vst_mail, vst_pass, vst_phone, vst_birthDate, vst_type, vst_name, vst_surname) VALUES(?,?,?,?,?,?,?) ');
-                    $req->execute(array($_POST['mail'],$pass_hache,$_POST['phone'], ''.$date[2].'-'.$date[1].'-'.$date[0].'',"student",$_POST['name'],$_POST['surname']));
+                    $req = $bdd->prepare('INSERT INTO visitor_vst (vst_mail, vst_pass, vst_phone, vst_birthDate, vst_type, vst_name, vst_surname) VALUES(?,?,?,?,?,?,?)');
+                    $req->execute(array($_POST['mail'],$pass_hache,$_POST['phone'], '`'.$date[2].'-'.$date[1].'-'.$date[0].'`' ,"student",$_POST['name'],$_POST['surname']));
                     header('Location: ../log/login.php'); 
                     echo "you're registered"; 
                 }
