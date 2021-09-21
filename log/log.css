@@ -64,3 +64,6 @@
     border: 4px;
     border-radius: 5px;
 }
+footer{
+    position: fixed;
+}
