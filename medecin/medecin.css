@@ -1,12 +1,11 @@
-*{
-    box-sizing: border-box;
+aside img{
+    width: 400px;
+    height: 400px;
+    margin: auto;
 }
-body{
-    margin: 0;
-    padding: 0;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    background: url("");
-    background-position: bottom;
-    background-size: no-repeat;
-    background-attachment: fixed;
-}
+/*footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin-top: 50px;
+}*/
