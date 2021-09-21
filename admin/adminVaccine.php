@@ -1,5 +1,8 @@
 <?php
     session_start();
+    require_once("../bdd/bddconection.inc.php");
+    $req = $bdd ->query('SELECT vcn_name FROM vaccine_vcn');
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +30,7 @@
                           </div>';
     ?> 
     <div class="container">            
-            <div id="accordion">
+            <div id="accordion" style="overflow-y=scroll;">
                 <div class="card">
                     <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#collapseOne">
@@ -41,15 +44,58 @@
                                     <input type="text" placeholder="Name of the Vaccine" name="vaccineName" required/>
                                 </div>
                                 <div class="form-group">
+                                    <input type="number" min="1" max="3" placeholder="Number of dose [1-3]" name="numberDose" required/>
+                                </div>
+                                <div class="form-group">
+                                    <textarea rows="2" cols="50" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
+                                </div> 
+                                <inpput type="hidden" name="form_function" value="createVaccine">                               
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                            Edit a Vaccine.
+                        </a>                    
+                    </div>
+                    <div id="collapseTwo" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            <form action="../admin/adminTraitment.php" method="post" class="was-validated">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Name of the Vaccine" name="vaccineName" required/>
+                                </div>
+                                <div class="form-group">
                                     <input type="number" max="3" placeholder="Number of dose [1-3]" name="numberDose" required/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="textarea" rows="10" cols="50" placeholder="Name of the Vaccine" name="vaccineInfo" required/>
+                                    <textarea rows="2" cols="50" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
                                 </div> 
-                                <inpput type="hidden" name="form_function" value="createNiche">                               
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <inpput type="hidden" name="form_function" value="editVaccine">                               
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </form>
-                            <?php //$res->closeCursor(); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                            Delete a Vaccine.
+                        </a>                    
+                    </div>
+                    <div id="collapseThree" class="collapse show" data-parent="#accordion">
+                        <div class="card-body">
+                            <form action="../admin/adminTraitment.php" method="post" class="was-validated">                                
+                                <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'/>';
+                                    while( $res = $req->fetch()){
+                                        echo '<input type="checkbox" name="vaccine" id="vaccineName" value="'.$res['vcn_name'].'"/><label for="vaccineName">'.$res['vcn_name'].'</label><br/>';
+                                    }                                    
+                                ?>
+                                <inpput type="hidden" name="form_function" value="deleteVaccine">                               
+                                <button type="submit" class="btn btn-primary">Delete</button>                                
+                            </form>
                         </div>
                     </div>
                 </div>
