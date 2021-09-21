@@ -7,7 +7,7 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="../admin/adminMedecin.php">Medecin</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Vaccine</a></li>
+        <li class="nav-item"><a class="nav-link" href="../admin/adminVaccine.php">Vaccine</a></li>
         <li class="nav-item"><a class="nav-link" href="../log/logoff.php">Log off</a></li>
     </ul>
 </nav>
