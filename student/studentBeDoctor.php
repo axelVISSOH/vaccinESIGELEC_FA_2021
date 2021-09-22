@@ -22,6 +22,38 @@
         <!--header-->
         <?php include("../student/navbarStudent.php")?>
         <!---end header-->
+        <?php 
+            if(isset($_GET['error'])){
+                switch ($_GET['error']){
+                    case 'success':
+                        echo '<div class="alert alert-success">
+                            <strong>Congratulation !!!</strong> You\'ll receive a mail when your request will be examinated.
+                          </div>';
+                    break;
+                    case 'extension':
+                        echo '<div class="alert alert-warning">
+                            <strong>Extension did not match !</strong> Please send us a pdf or a word with all needed informations.
+                          </div>';
+                    break;
+                    case 'size':
+                        echo '<div class="alert alert-info">
+                            <strong>File size !!!</strong> Your file is too voluminous(send a file under 5Mo).
+                          </div>';
+                    break;
+                    case 'error':
+                        echo '<div class="alert alert-danger">
+                            <strong>ERROR !!!</strong> There was an error. Try again please.'.$_SESSION['error'].'
+                          </div>';
+                    break;
+                    case 'already':
+                        echo '<div class="alert alert-info">
+                            <strong>You already made a demand on the </strong>'.$_SESSION['date'].' It\'s'.$_SESSION['state'].' You\'ll receive a mail when your request will be fully processed.
+                          </div>';
+                    break;
+                    default: break;
+                }
+            }
+        ?>
         <div>
             <!--<img src="../medecin/doctor.png" alt="A funny picture of a doctor.">-->
             <h1>You are a Doctor?...</h1>
