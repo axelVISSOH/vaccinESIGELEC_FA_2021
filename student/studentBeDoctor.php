@@ -56,7 +56,7 @@
         ?>
         <div>
             <!--<img src="../medecin/doctor.png" alt="A funny picture of a doctor.">-->
-            <h1>You are a Doctor?...</h1>
+            <h1>Are you a Doctor ?...</h1>
             <p>We need some informations to change your personal area.</p>
         </div>  
         <div class="container sendinfo">               
