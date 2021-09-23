@@ -1,5 +1,8 @@
 <?php
-    session_start();
+    session_start();//starting the session
+    require_once("../bdd/bddconection.inc.php");//connection to the database
+    $req = $bdd->query('SELECT dmd_id, dmd_vst_mail, dmd_doc, dmd_date, dmd_info FROM demand_dmd');
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +29,64 @@
             echo '<div class="alert alert-success">
                                 <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
                             </div>';
-        ?>   
-        <p>haha</p> 
+        ?>
+        
+        <?php 
+            if(isset($_GET['view']) AND isset($_GET['f'])){
+                echo '<p><a href="../admin/adminMedecin.php"> <<--Return </a></p></br>';                
+                echo '<embed class="container" src="../uploads/'.$_GET['f'].'" width="800px" height="350px" type=\'application/pdf\'/>';
+            }else{
+                if( isset($_GET['action']) AND isset($_GET['f1']) ){
+                    switch ($_GET['action']){                        
+                        $doc = explode('_',$_GET['f1']);
+                        case 1:
+                            echo '<div class="alert alert-success">
+                                    <strong>You\'ve just accepted the demand !!!</strong> The new Doctor will be notified.
+                                  </div>';
+                                  $req1 = $bdd->query('UPDATE visitor_vst SET vst_type=\'medecin\' WHERE vst_mail=\''.$doc[0].'\'');
+                        break;
+                        case 0:
+                            echo '<div class="alert alert-info">
+                                    <strong>You\'ve just rejected the demand !!!</strong> The visitor will be notified.
+                                 </div>';                           
+                        break;
+                        default: break;
+                    }
+                    $req1 = $bdd->query('DELETE FROM demand_dmd WHERE dmd_vst_mail=\''.$doc[0].'\'');
+                }?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Firstname</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Others Informations</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Action</th>                    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                            while($res = $req->fetch()){
+                                $req1 = $bdd->prepare('SELECT vst_name, vst_surname FROM visitor_vst WHERE vst_mail= ? ');
+                                $req1 -> execute(array($res['dmd_vst_mail']));
+                                $res1 = $req1->fetch();
+                                echo '<tr>
+                                        <th scope="row">'.$res['dmd_id'].'</th>
+                                        <td>'.$res1['vst_name'].'</td>
+                                        <td>'.$res1['vst_surname'].'</td>
+                                        <td>'.$res['dmd_date'].'</td>
+                                        <td>'.$res['dmd_info'].'</td>
+                                        <td><p> <a href="../admin/adminMedecin.php?view=1&f='.$res['dmd_doc'].'"> View </a> <a href="../uploads/'.$res['dmd_doc'].'">Download</a> </p></td>
+                                        <td><p> <a href="../admin/adminMedecin.php?action=1&f1='.$res['dmd_doc'].'"> Accept </a>  <a href="../uploads/'.$res['dmd_doc'].'?action=0&f1='.$res['dmd_doc'].'"> Refuse </a> </p></td>
+                                    </tr>';
+
+                            }
+                        ?>
+                    </tbody>
+                </table>
+            <?php } ?>        
         <!--footer-->
         <?php include("../home/footer.php")?>
         <!---end footer-->
