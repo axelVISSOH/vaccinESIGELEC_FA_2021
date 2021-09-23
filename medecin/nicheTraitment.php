@@ -2,7 +2,7 @@
     session_start();
     require_once("../bdd/bddconection.inc.php");    
     function isWeekend($dates) {
-        $date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
+        //$date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
         $weekDay = date('w', strtotime($date));
         if($weekDay == 0 || $weekDay == 6)
             return 1;
@@ -33,11 +33,14 @@
                 return true;
         }
     }
-    function correctDate($dates,$h2,$m2,$bdd){   
+    function correctDate($dates,$h2,$m2,$bdd){ 
+        $today = new DateTime();  
         if(isWeekend($dates)==1)
             return 1;//date is weekend
+        if($today>$dates)
+            return 1;//date is past
         $req = $bdd -> prepare('SELECT nch_hour FROM niche_nch WHERE nch_vst_mail = ? AND nch_date = ?');
-        $req -> execute(array($_POST['mail'],''.$dates[2].'-'.$dates[1].'-'.$dates[0]));  
+        $req -> execute(array($_POST['mail'],$dates));  
         while( $res = $req -> fetch() ){
             $hours = explode(':',$res['nch_hour']);
             if($hours[0]<$h2)
@@ -53,9 +56,8 @@
 
     if($_POST['form_function']=="createniche"){// if the form for niche creation is send        
             if(isset($_POST['nicheDate']) AND isset($_POST['hour1']) AND isset($_POST['hour2']) AND isset($_POST['min1']) AND isset($_POST['min2']) AND isset($_POST['vaccine'])){
-                $date = explode('/',$_POST['nicheDate']);               
-                if(correctTime($_POST['hour1'], $_POST['hour2'], $_POST['min1'], $_POST['min2'])){
-                    switch (correctDate($date, $_POST['hour2'], $_POST['min2'], $bdd)){
+               if(correctTime($_POST['hour1'], $_POST['hour2'], $_POST['min1'], $_POST['min2'])){
+                    switch (correctDate($_POST['nicheDate'], $_POST['hour2'], $_POST['min2'], $bdd)){
                         case 1:
                             header('Location: ../medecin/medecinCreateNiche.php?error=week_end');//if the date is in the weekend 
                         break;
@@ -63,8 +65,8 @@
                             header('Location: ../medecin/medecinCreateNiche.php?error=nicheTaken');//if the niche is already in the db
                         break;
                         case 0:
-                            $req = $bdd->prepare('INSERT INTO niche_nch (nch_vst_mail, nch_hour, nch_date, nch_vcn) VALUES (?,?,?,?)');
-                            $req->execute(array($_POST['mail'], $_POST['hour1'].':'.$_POST['min1'].':'.$_POST['hour2'].':'.$_POST['min2'], ''.$date[2].'-'.$date[1].'-'.$date[0], $_POST['vaccine']));         
+                            $req = $bdd->prepare('INSERT INTO niche_nch (nch_vst_mail, nch_hour, nch_date, nch_vcn) VALUES (?,?,?,?)');//''.$date[2].'-'.$date[1].'-'.$date[0]
+                            $req->execute(array($_POST['mail'], $_POST['hour1'].':'.$_POST['min1'].':'.$_POST['hour2'].':'.$_POST['min2'], $_POST['nicheDate'], $_POST['vaccine']));         
                             header('Location: ../medecin/medecinCreateNiche.php?error=null');
                         break;
                         default: break;
