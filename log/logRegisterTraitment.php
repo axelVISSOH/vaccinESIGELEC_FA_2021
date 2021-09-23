@@ -37,9 +37,8 @@ require_once("../bdd/bddconection.inc.php");//connection to the database
                 if($_POST['mail']==$_POST['confirmmail']){
                     if($_POST['pswd']==$_POST['confirmpswd']){
                         $pass_hache = password_hash($_POST['pswd'], PASSWORD_DEFAULT);
-                        $date = explode('/',$_POST['birthdate']); 
                         $req = $bdd->prepare('INSERT INTO visitor_vst (vst_mail, vst_pass, vst_phone, vst_birthDate, vst_type, vst_name, vst_surname) VALUES(?,?,?,?,?,?,?) ');
-                        $req->execute(array($_POST['mail'],$pass_hache,$_POST['phone'], ''.$date[2].'-'.$date[1].'-'.$date[0].'',"student",$_POST['name'],$_POST['surname']));
+                        $req->execute(array($_POST['mail'], $pass_hache, $_POST['phone'], $_POST['birthdate'], "student", $_POST['name'],$_POST['surname']));
                         header('Location: ../log/login.php?error=not');
                     }
                     else{
