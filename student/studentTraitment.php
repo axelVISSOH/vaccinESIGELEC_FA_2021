@@ -12,12 +12,12 @@
                 if ($_FILES['file']['size'] <= 1000000){
                     // test if the extension is allowed
                     $fileInfo = pathinfo($_FILES['file']['name']);
-                    $extensionUpload = $infosfichier['extension'];
-                    $extensionsAllowed = array('pdf', 'docx');
+                    $extensionUpload = $fileInfo['extension'];
+                    $extensionsAllowed = array('pdf');
                     if (in_array($extensionUpload, $extensionsAllowed)){
-                        move_uploaded_file($_FILES['file']['tmp_name'],'../uploads/'.basename(''.$_SESSION['mail'].'_file'));
-                        $req = $bdd->prepare('INSERT INTO demande_dmd (dmd_vst_mail, dmd_doc, dmd_date, dmd_info, dmd_state) VALUES(?,?,?,?,?)');
-                        $req->execute(array($_SESSION['mail'],''.$_SESSION['mail'].'_file', date('Y-m-d'), $_POST['info'], "In Progress"));
+                        move_uploaded_file($_FILES['file']['tmp_name'],'../uploads/'.basename(''.$_SESSION['mail'].'_file.pdf'));
+                        $req = $bdd->prepare('INSERT INTO demand_dmd (dmd_vst_mail, dmd_doc, dmd_date, dmd_info, dmd_state) VALUES(?,?,?,?,?)');
+                        $req->execute(array($_SESSION['mail'],''.$_SESSION['mail'].'_file.pdf', date('Y-m-d'), $_POST['info'], "In Progress"));
                         header('Location: ../student/studentBeDoctor.php?error=success');//if everything was good
                     }
                     else{

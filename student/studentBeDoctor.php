@@ -47,7 +47,7 @@
                     break;
                     case 'already':
                         echo '<div class="alert alert-info">
-                            <strong>You already made a demand on the </strong>'.$_SESSION['date'].' It\'s'.$_SESSION['state'].' You\'ll receive a mail when your request will be fully processed.
+                            <strong>You already made a demand on the </strong>'.$_SESSION['date'].' It\'s '.$_SESSION['state'].' You\'ll receive a mail when your request will be fully processed.
                           </div>';
                     break;
                     default: break;
@@ -61,9 +61,9 @@
         </div>  
         <div class="container sendinfo">               
                 <h2 class="text-center">Send the Informations...</h2>  
-                <form action="../student/studentTraitment.php" method="post">
+                <form action="../student/studentTraitment.php" method="post" enctype="multipart/form-data">
                     <textarea name="info" placeholder="Tell us more" row="5" cols="30" required></textarea>
-                    <label for="file">Send us a valid cetificate or a diploma.</label><input type="file" name="file" placeholder="Your file" id="file" required/></br>
+                    <label for="file">Send us a valid cetificate or a diploma.</label><input type="file" name="file" maxlength="250" id="file" required/></br>
                     <input type="hidden" name="form_function" value="studentBeDoctor">
                     <input type="submit" class="btn btn-primary" value="Send"/>
                 </form>
