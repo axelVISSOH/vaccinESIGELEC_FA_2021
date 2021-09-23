@@ -22,6 +22,11 @@
         <!--header-->
         <?php include("../student/navbarStudent.php")?>
         <!---end header-->
+        <?php
+            echo '<div class="alert alert-success">
+                                <strong>Welcome Back: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
+                            </div>';
+        ?>
         <?php 
             if(isset($_GET['error'])){
                 switch ($_GET['error']){

@@ -31,6 +31,7 @@
                 header('Location: ../student/studentBeDoctor.php?error=error');//if the file is not sent or ther is a php error
             }
         }
+        
     }else{
         header('Location: ../student/studentBeDoctor.php?error=already');//if there is already a demand for this mail.
         $_SESSION['date'] = $res['dmd_date'];
