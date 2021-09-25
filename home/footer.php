@@ -1,4 +1,4 @@
-<footer class="row  fixed-bottom">
+<footer class="row">
       <div class="col-sm-4">
         <h5>Copyright &copy; esigelec 2021</h5>
         <ul class="nav flex-column">

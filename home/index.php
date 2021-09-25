@@ -16,13 +16,14 @@
    <title>Home</title>
 </head>
 <body>
+    <div class="container">
         <!--header-->
         <?php include("../home/navbarHome.php");?>
         <!--end header-->  
         <div class="row">
             <div class="col-lg-7 left">
                 <h1>Welcome to Esig'Vaccination.</h1>
-                <img src="vacinationcenter.png" alt="A vaccination center picture">
+                <img  src="vacinationcenter.png" class="img-fluid"  alt="A vaccination center picture">
             </div>
             <div class="col-lg-4 right"> 
                 <h4 class="info text-center">Informations</h4>
@@ -36,9 +37,10 @@
                 </p>
             </div>            
         </div>
-        <p class="infoT">Thrust Us !!!</p>          
+        <p class="infoT">Trust Us !!!</p>          
         <!--footer-->
         <?php include("../home/footer.php")?>
-        <!--end footer-->        
+        <!--end footer-->  
+    </div>     
 </body>
 </html>
