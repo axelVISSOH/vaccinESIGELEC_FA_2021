@@ -4,6 +4,7 @@
     margin-top: 20px;    
     padding: 10px;
 }
+
 .container.signin{
     width: 500px;
     height: auto;
@@ -47,7 +48,6 @@
     transition: 0.5s ease-in-out;
 }
 .signup{
-    
     width: 700px;
     height: 400px;
     align-items: center;
@@ -64,6 +64,6 @@
     border: 4px;
     border-radius: 5px;
 }
-footer{
-    position: fixed;
+p{
+    word-spacing: normal;
 }

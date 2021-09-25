@@ -17,7 +17,7 @@ require_once("../bdd/bddconection.inc.php");//connection to the database
                         $_SESSION['surname'] = htmlspecialchars($response['vst_surname']);
                         $_SESSION['mail'] = htmlspecialchars($_POST['mail']);
                         if($response['vst_type']=="student"){
-                            header('Location: ../student/studentNiche.php');//go to the main student page
+                            header('Location: ../student/studentAppointment.php');//go to the main student page
                         }
                         elseif($response['vst_type']=="medecin"){
                             header('Location: ../medecin/medecinCreateNiche.php');//go to the main medecin page

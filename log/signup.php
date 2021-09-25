@@ -44,22 +44,19 @@
             <h2>New in ESIG'VACINATION...</h2>
             <form action="../log/logRegisterTraitment.php" method="post">
                 <div class="row row-cols-2">
-                    <input class="col" type="text" placeholder="Name" name="name" required/>
-                    <input class="col" type="text" placeholder="Surname" name="surname" required/>
-                    <input class="col" type="tel" placeholder="Phone" name="phone" required/>
-                    <input class="col" type="date" placeholder="BirthDate" name="birthdate" required/>
-                    <input class="col" type="mail" placeholder="Mail" name="mail" required/>
-                    <input class="col" type="email" placeholder="Confirm Mail" name="confirmmail" required/>
-                    <input class="col" type="password" placeholder="Enter password" name="pswd" required/>
-                    <input class="col" type="password" placeholder="Confirm password" name="confirmpswd" required/>
+                    <input type="text" placeholder="Name" name="name" required/>
+                    <input  type="text" placeholder="Surname" name="surname" required/>
+                    <input  type="tel" placeholder="Phone: 07-31-31-31-31" name="phone" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"required/>
+                    <input  type="date" placeholder="BirthDate" name="birthdate" required/>
+                    <input  type="mail" placeholder="Mail" name="mail" required/>
+                    <input  type="email" placeholder="Confirm Mail" name="confirmmail" required/>
+                    <input  type="password" placeholder="Enter password" name="pswd" required/>
+                    <input  type="password" placeholder="Confirm password" name="confirmpswd" required/>
                     <input name="form_function" type="hidden" value="Register"/></br>       
                     <button type="submit" class="btn btn-primary">Register</button>
                 </div>
             </form>
         </div> 
     <!--end section-->
-    <!--footer-->
-    <?php include("../home/footer.php")?>
-    <!--end footer--> 
 </body>
 </html>
