@@ -27,33 +27,39 @@
         <!---end header-->
         <?php
             echo '<div class="alert alert-success">
-                                <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
-                            </div>';
+                    <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
+                  </div>';
+            echo '<p class="container">
+                    Verify the informations and choose the best healthcare professional.
+                  </p>';
         ?>
         
         <?php 
-            if(isset($_GET['view']) AND isset($_GET['f'])){
+            if(isset($_GET['view']) AND isset($_GET['f'])){//if the admin want to see the file
                 echo '<p><a href="../admin/adminMedecin.php"> <<--Return </a></p></br>';                
                 echo '<embed class="container" src="../uploads/'.$_GET['f'].'" width="800px" height="350px" type=\'application/pdf\'/>';
-            }else{
-                if( isset($_GET['action']) AND isset($_GET['f1']) ){
-                    switch ($_GET['action']){                        
-                        $doc = explode('_',$_GET['f1']);
+            }else{//if the admin accept or reject
+                if( isset($_GET['action']) AND isset($_GET['f1']) ){                                            
+                    $f1 = explode('_',$_GET['f1']);
+                    switch ($_GET['action']){
                         case 1:
+                            $req1 = $bdd->query('UPDATE visitor_vst SET vst_type=\'medecin\' WHERE vst_mail=\''.$f1[0].'\'');                            
                             echo '<div class="alert alert-success">
                                     <strong>You\'ve just accepted the demand !!!</strong> The new Doctor will be notified.
-                                  </div>';
-                                  $req1 = $bdd->query('UPDATE visitor_vst SET vst_type=\'medecin\' WHERE vst_mail=\''.$doc[0].'\'');
+                                  </div></br>
+                                  <p><a href="../admin/adminMedecin.php"><<--Return </a></p>';
                         break;
                         case 0:
                             echo '<div class="alert alert-info">
                                     <strong>You\'ve just rejected the demand !!!</strong> The visitor will be notified.
-                                 </div>';                           
+                                 </div></br>
+                                  <p><a href="../admin/adminMedecin.php"><<--Return </a></p>';                           
                         break;
                         default: break;
                     }
-                    $req1 = $bdd->query('DELETE FROM demand_dmd WHERE dmd_vst_mail=\''.$doc[0].'\'');
-                }?>
+                    $req1 = $bdd->query('DELETE FROM demand_dmd WHERE dmd_vst_mail=\''.$f1[0].'\'');
+                }else{?>
+                
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -79,16 +85,12 @@
                                         <td>'.$res['dmd_date'].'</td>
                                         <td>'.$res['dmd_info'].'</td>
                                         <td><p> <a href="../admin/adminMedecin.php?view=1&f='.$res['dmd_doc'].'"> View </a> <a href="../uploads/'.$res['dmd_doc'].'">Download</a> </p></td>
-                                        <td><p> <a href="../admin/adminMedecin.php?action=1&f1='.$res['dmd_doc'].'"> Accept </a>  <a href="../uploads/'.$res['dmd_doc'].'?action=0&f1='.$res['dmd_doc'].'"> Refuse </a> </p></td>
+                                        <td><p> <a href="../admin/adminMedecin.php?action=1&f1='.$res['dmd_doc'].'"> Accept </a>  <a href="../admin/adminMedecin.php?action=0&f1='.$res['dmd_doc'].'"> Refuse </a> </p></td>
                                     </tr>';
-
                             }
                         ?>
                     </tbody>
                 </table>
-            <?php } ?>        
-        <!--footer-->
-        <?php include("../home/footer.php")?>
-        <!---end footer-->
+            <?php } } ?>
     </body>
 </html>

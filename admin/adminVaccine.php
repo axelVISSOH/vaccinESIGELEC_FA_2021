@@ -26,8 +26,11 @@
     <!---end header-->
     <?php
         echo '<div class="alert alert-success">
-                            <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
-                          </div>';
+                    <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
+              </div>';
+        echo '<p class="container">
+                    Create Edit or Delete a vaccine.
+              </p>';
     ?> 
     <div class="container">            
             <div id="accordion" style="overflow-y=scroll;">
@@ -47,7 +50,7 @@
                                     <input type="number" min="1" max="3" placeholder="Number of dose [1-3]" name="numberDose" required/>
                                 </div>
                                 <div class="form-group">
-                                    <textarea rows="2" cols="50" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
+                                    <textarea rows="2" cols="20" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
                                 </div> 
                                 <inpput type="hidden" name="form_function" value="createVaccine">                               
                                 <button type="submit" class="btn btn-primary">Create</button>
@@ -55,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <!--<div class="card">
                     <div class="card-header">
                         <a class="card-link" data-toggle="collapse" href="#collapseTwo">
                             Edit a Vaccine.
@@ -64,6 +67,11 @@
                     <div id="collapseTwo" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
                             <form action="../admin/adminTraitment.php" method="post" class="was-validated">
+                                <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'/>';
+                                    while( $res = $req->fetch()){
+                                        echo '<input type="checkbox" name="vaccine" id="vaccineName" value="'.$res['vcn_name'].'"/><label for="vaccineName">'.$res['vcn_name'].'</label><br/>';
+                                    }                                    
+                                ?>
                                 <div class="form-group">
                                     <input type="text" placeholder="Name of the Vaccine" name="vaccineName" required/>
                                 </div>
@@ -71,7 +79,7 @@
                                     <input type="number" max="3" placeholder="Number of dose [1-3]" name="numberDose" required/>
                                 </div>
                                 <div class="form-group">
-                                    <textarea rows="2" cols="50" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
+                                    <textarea rows="2" cols="20" placeholder="Info on the Vaccine" name="vaccineInfo" required></textarea>
                                 </div> 
                                 <inpput type="hidden" name="form_function" value="editVaccine">                               
                                 <button type="submit" class="btn btn-primary">Edit</button>
@@ -99,10 +107,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
     </div>
-    <!--footer-->
-    <?php include("../home/footer.php")?>
-    <!---end footer-->
 </body>
 </html>
