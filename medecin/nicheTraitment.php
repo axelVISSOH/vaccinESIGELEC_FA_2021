@@ -2,7 +2,7 @@
     session_start();
     require_once("../bdd/bddconection.inc.php");    
     function isWeekend($dates) {
-        //$date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
+        $date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
         $weekDay = date('w', strtotime($date));
         if($weekDay == 0 || $weekDay == 6)
             return 1;
@@ -53,6 +53,18 @@
             }                
         }
     }
+    function verifyCerticate($aptmid, $bdd){
+        $row = 0;
+        $req = $bdd -> prepare('SELECT * FROM certificate_crft WHERE crft_aptm_id = ?');
+        $req -> execute((array((int)$aptmid)));
+        while($res = $req -> fetch()){
+            $row ++;
+        }
+        if($row != 0)
+            return false;
+        else
+            return true;
+    }
 
     if($_POST['form_function']=="createniche"){// if the form for niche creation is send        
             if(isset($_POST['nicheDate']) AND isset($_POST['hour1']) AND isset($_POST['hour2']) AND isset($_POST['min1']) AND isset($_POST['min2']) AND isset($_POST['vaccine'])){
@@ -87,5 +99,34 @@
     else if($_POST['form_function']=="deleteniche") {//if the form for niche edition is send
 
     }
-
+    else if($_POST['form_function']=="certificate"){//if the form certifcate is send
+        if(verifyCerticate($_POST['aptmId'], $bdd)){
+            if (isset($_FILES['certificate']) AND $_FILES['certificate']['error'] == 0){//test if the file is send & if there is no error
+                // test if the file is voluminous
+                if ($_FILES['certificate']['size'] <= 1000000){
+                    // test if the extension is allowed
+                    $fileInfo = pathinfo($_FILES['certificate']['name']);
+                    $extensionUpload = $fileInfo['extension'];
+                    $extensionsAllowed = array('pdf');
+                    if (in_array($extensionUpload, $extensionsAllowed)){
+                        move_uploaded_file($_FILES['certificate']['tmp_name'],'../uploads/'.basename(''.$_POST['to'].'_certificate.pdf'));
+                        $req = $bdd->prepare('INSERT INTO certificate_crft (crft_aptm_id, crft_path) VALUES(?,?)');
+                        $req->execute(array($_POST['aptmId'],''.$_POST['to'].'_certificate.pdf'));
+                        header('Location: ../medecin/medecinCertificates.php?error=success');//if everything was good
+                    }
+                    else{
+                        header('Location: ../medecin/medecinCertificates.php?error=extension');//if the extension is not good
+                    }
+                }else{
+                    header('Location: ../medecin/medecinCertificates.php?error=size');//if the size is too voluminous
+                }
+            }else{
+                header('Location: ../medecin/medecinCertificates.php?error=error');//if the file is not sent or ther is a php error
+            }
+        }else{
+            header('Location: ../medecin/medecinCertificates.php?error=already');//if there is already a certificate for that aptm
+            
+        }
+        
+    }
 ?>

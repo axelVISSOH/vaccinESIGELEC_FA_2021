@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-7 left">
                 <h1>Welcome to Esig'Vaccination.</h1>
-                <img  src="vacinationcenter.png" class="img-fluid"  alt="A vaccination center picture">
+                <img  src="imageVaccin.jpg" class="img-fluid"  alt="A vaccination center picture">
             </div>
             <div class="col-lg-4 right"> 
                 <h4 class="info text-center">Informations</h4>

@@ -60,7 +60,6 @@
             }
         ?>
         <div>
-            <!--<img src="../medecin/doctor.png" alt="A funny picture of a doctor.">-->
             <h1>Are you a Doctor ?...</h1>
             <p>We need some informations to change your personal area.</p>
         </div>  
@@ -73,9 +72,6 @@
                     <input type="submit" class="btn btn-primary" value="Send"/>
                 </form>
         </div>
-        <!--footer-->
-        <?php include("../home/footer.php")?>
-        <!---end footer-->
     </body>
 </html>
 

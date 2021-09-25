@@ -91,7 +91,7 @@
                                                 <input type="number" min="8" max="18" name="hour2"/><label> H </label><input type="number" min="0" max="59" name="min2"/>                        
                                             </div>                     
                                             <input name="form_function" type="hidden" value="createniche">   
-                                            <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'/>';
+                                            <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'>';
                                                 while( $res = $req->fetch()){
                                                     echo '<input type="checkbox" name="vaccine" id="vaccineName" value="'.$res['vcn_name'].'"/><label for="vaccineName">'.$res['vcn_name'].'</label><br/>';
                                                 }                                    
@@ -103,9 +103,6 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?>         
-            <!--footer-->
-            <?php include("../home/footer.php")?>
-            <!---end footer-->    
+                <?php } ?> 
     </body>
 </html>

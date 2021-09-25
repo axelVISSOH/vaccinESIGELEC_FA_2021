@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 23 sep. 2021 à 00:53
+-- Généré le : jeu. 23 sep. 2021 à 09:50
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `demand_dmd` (
   `dmd_info` varchar(255) CHARACTER SET utf8 NOT NULL,
   `dmd_state` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`dmd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `demand_dmd`
@@ -157,7 +157,10 @@ INSERT INTO `visitor_vst` (`vst_mail`, `vst_pass`, `vst_phone`, `vst_birthDate`,
 ('axelvis@gmail.com', '$2y$10$QM7pco2x1dQq5sFoEp33eu6WKqMuw7toENpw9ptC1d0asEmNRj4mu', '0758316040', '2001-09-29', 'student', 'VISSOH', 'Axel'),
 ('axelvissoh@gmail.com', 'baba', '0758316040', '2001-09-29', '', 'VISSOH', 'Axel'),
 ('axje@visho.org', '$2y$10$I9C2Oi2o0xSgCVX9WRbECeOs8EjeR/ROvi/p51zab4upyjstl6vHa', '62927452', '2000-08-29', 'admin', 'axje', 'visho'),
-('jed@hous.fr', '$2y$10$fiS8lNMUUTlkVayEDq7ti.jNLUAi8XBSHAzBjU.jEjOtTVt6Ere5i', '13342112', '2000-08-02', 'student', 'HOUNS', 'jed');
+('jed@hous.fr', '$2y$10$fiS8lNMUUTlkVayEDq7ti.jNLUAi8XBSHAzBjU.jEjOtTVt6Ere5i', '13342112', '2000-08-02', 'student', 'HOUNS', 'jed'),
+('zozo@zozo.com', '$2y$10$6pJTgR/TX7vDgutokmyo.OGt1CZOcYFM4NAbbLalnnX1a6/pGUue2', '123444', '2001-12-05', 'student', 'zozor', 'zozozo'),
+('zozo@zozo1.com', '$2y$10$eprPj3S1FzOBuMNXVZYL8u2MhsVulk4Z9JEqcuz8KvCVmoYS5Zp4y', '123333', '2000-09-15', 'medecin', 'zozo1', 'zozo'),
+('zozo@zozo2.com', '$2y$10$r.7Rp.sRT8D0e3ZvU3RL6eJttktk.Q3rpKoSpVSybUeosUECyBNzO', 'd  d hdsc', '2010-08-03', 'medecin', 'zozo2', 'zozo');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

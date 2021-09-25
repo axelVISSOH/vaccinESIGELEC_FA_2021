@@ -95,10 +95,10 @@
                     <div id="collapseThree" class="collapse show" data-parent="#accordion">
                         <div class="card-body">
                             <form action="../admin/adminTraitment.php" method="post" class="was-validated">                                
-                                <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'/>';
+                                <?php /*echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'/>';
                                     while( $res = $req->fetch()){
                                         echo '<input type="checkbox" name="vaccine" id="vaccineName" value="'.$res['vcn_name'].'"/><label for="vaccineName">'.$res['vcn_name'].'</label><br/>';
-                                    }                                    
+                                    } */                                   
                                 ?>
                                 <inpput type="hidden" name="form_function" value="deleteVaccine">                               
                                 <button type="submit" class="btn btn-primary">Delete</button>                                
