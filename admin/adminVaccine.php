@@ -3,7 +3,6 @@
     require_once("../bdd/bddconection.inc.php");
     $req = $bdd ->query('SELECT vcn_name FROM vaccine_vcn');
 ?>
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
