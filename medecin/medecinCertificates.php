@@ -75,7 +75,7 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                     <div class="card-body">                                        
                                          <div class="container">
-                                            <table class="table table-bordered table-dark" style="overflow-y=scroll;">
+                                            <table class="table table-bordered table-dark">
                                                 <thead>
                                                     <tr>                                                
                                                         <th scope="col">Date</th>
@@ -99,13 +99,13 @@
                                                                     <td>'.$res1['vst_name'].' '.$res1['vst_surname'].'</td>
                                                                     <td>'.$res['nch_vcn'].'</td>
                                                                     <td><form action="../medecin/nicheTraitment.php" method="post" enctype="multipart/form-data">
-                                                                            <label for="file">Send the cetificate.</label>
-                                                                            <input type="file" name="certificate" maxlength="250" id="file" required/>
+                                                                            <label for="file'.$res['aptm_id'].'">Send the cetificate.</label>
+                                                                            <input type="file" name="certificate" id="file'.$res['aptm_id'].'" required/>
                                                                             <input type="hidden" name="to" value="'.$res['aptm_vst_mail'].'">
                                                                             <input type="hidden" name="aptmId" value="'.$res['aptm_id'].'">
                                                                             <input type="hidden" name="form_function" value="certificate">                    
-                                                                            <input type="submit" class="btn btn-primary" value="Send"/></td>
-                                                                        </form>
+                                                                            <input type="submit" class="btn btn-primary" value="Send"/>
+                                                                        </form></td>                                                                        
                                                                 </tr>';
                                                         }                                            
                                                     ?>

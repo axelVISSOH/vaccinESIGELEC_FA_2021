@@ -54,14 +54,14 @@
         <?php
         if(isset($_GET['a'])){
                 $id = explode('_',$_GET['a']);
-                if($id['0']=="D"){
+                if($id[0]=="D"){
                     $req = $bdd -> prepare('DELETE FROM appointment_aptm WHERE aptm_nch_id = ?');
                     $req -> execute(array((int)$id[1]));
                     echo '<div class="alert alert-success">
                             <p><a href="../student/studentAppointment.php"><<--Return</a></p>
                             <strong>You\'ve just deleted an appointement !!!</strong>You can go back to choose another one by clic on the return link.
                          </div>';                                                      
-                    changeHour($res1['nch_hour'], (int)$id[1], $bdd);
+                    changeHour($id[2], (int)$id[1], $bdd);
                 }
                 else{
                     echo '<div class="alert alert-danger">
@@ -94,23 +94,23 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $req = $bdd->prepare('SELECT aptm_nch_id FROM appointment_aptm WHERE aptm_vst_mail = ?');
+                                                $req = $bdd->prepare('SELECT aptm_nch_id, aptm_hour FROM appointment_aptm WHERE aptm_vst_mail = ?');
                                                 $req -> execute(array($_SESSION['mail']));
                                                 while($res = $req->fetch()){
                                                     $req1 = $bdd-> prepare('SELECT * FROM niche_nch WHERE nch_id = ?');
                                                     $req1 -> execute(array($res['aptm_nch_id']));
                                                     while($res1 = $req1 -> fetch()){
-                                                        $today = date("Y-m-d");
+                                                        $today = date('Y-m-d');
                                                         if( $res1['nch_date'] >= $today){
-                                                            $hour = explode(':',$res1['nch_hour']);
+                                                            $hour = explode(':',$res['aptm_hour']);
                                                             echo '<tr>
                                                                     <th scope="row">'.$res1['nch_id'].'</th>
                                                                     <td>'.$res1['nch_date'].'</td>
                                                                     <td>'.$hour[0].':'.$hour[1].'</td>
                                                                     <td>'.$hour[2].':'.$hour[3].'</td>
-                                                                    <td>'.$res1['nch_vcn'].' '.'</td>
-                                                                    <td><p> <a href="../student/studentCertificates.php?a=D_'.$res1['nch_id'].'"> Delete </a></p></td>
-                                                                </tr>';
+                                                                    <td>'.$res1['nch_vcn'].'</td>
+                                                                    <td><p> <a href="../student/studentCertificates.php?a=D_'.$res1['nch_id'].'_'.$res1['nch_hour'].'"> Delete </a></p></td>
+                                                                 </tr>';
                                                         }
                                                     }    
                                                 }                                            
@@ -135,7 +135,6 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Certificates</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>

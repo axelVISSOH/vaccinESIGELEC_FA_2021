@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once("../bdd/bddconection.inc.php");
-    $req = $bdd ->query('SELECT vcn_name FROM vaccine_vcn');
+    $req = $bdd ->query('SELECT vcn_id, vcn_name FROM vaccine_vcn');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +82,7 @@
                                     <div class="card-body">
                                         <form action="../medecin/nicheTraitment.php" method="post" class="was-validated">
                                             <div class="form-group">
-                                                <input type="date" placeholder="Niche date: Ex=03/11/2010" class="form-control" name="nicheDate" required/>
+                                                <input type="date" class="form-control" name="nicheDate" required/>
                                             </div>
                                             <div class="form-group">
                                                 <p>From</p>
@@ -93,7 +93,7 @@
                                             <input name="form_function" type="hidden" value="createniche">   
                                             <?php echo '<input name="mail" type="hidden" value='.$_SESSION['mail'].'>';
                                                 while( $res = $req->fetch()){
-                                                    echo '<input type="checkbox" name="vaccine" id="vaccineName" value="'.$res['vcn_name'].'"/><label for="vaccineName">'.$res['vcn_name'].'</label><br/>';
+                                                    echo '<input type="checkbox" name="vaccine" id="vaccineName'.$res['vcn_id'].'" value="'.$res['vcn_name'].'"/><label for="vaccineName'.$res['vcn_id'].'">'.$res['vcn_name'].'</label><br/>';
                                                 }                                    
                                             ?> 
                                             <button type="submit" class="btn btn-primary">Create</button>

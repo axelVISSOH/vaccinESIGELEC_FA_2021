@@ -52,7 +52,6 @@
     height: 400px;
     align-items: center;
     background-color: dimgrey;
-    overflow-y: scroll;
 }
 .signup form{
     padding-top: 10px;
@@ -63,7 +62,4 @@
     width: 230px;
     border: 4px;
     border-radius: 5px;
-}
-p{
-    word-spacing: normal;
 }

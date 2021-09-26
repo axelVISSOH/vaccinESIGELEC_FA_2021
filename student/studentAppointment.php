@@ -115,12 +115,20 @@
             if(isset($_GET['a'])){
                 $id = explode('_',$_GET['a']);
                 if(verifyAppointment($bdd, (int)$id[1])){
-                    $req = $bdd -> prepare('INSERT INTO appointment_aptm (aptm_nch_id, aptm_vst_mail, aptm_state) VALUES (?,?,?)');
-                    $req -> execute(array((int)$id[1], $_SESSION['mail'], "Waiting"));
+                    $req = $bdd -> prepare('INSERT INTO appointment_aptm (aptm_nch_id, aptm_vst_mail, aptm_state, aptm_hour) VALUES (?,?,?,?)');
+                    $hour = explode(':', $id[2]);
+                    if( ( ((int)$hour[1]) +15) < 60 )
+                        $hourEnd = (int)$hour[0].':'.((int)$hour[1]+15);
+                    else if( (((int)$hour[1])+15) == 60)
+                        $hourEnd = ((int)$hour[0]+1).':'.((int)$hour[1]-(int)$hour[1]);
+                    else
+                        $hourEnd = ((int)$hour[0]+1).':'.((int)$hour[1]-45);
+                    
+                    $req -> execute(array((int)$id[1], $_SESSION['mail'], "Waiting", $hour[0].':'.$hour[1].':'.$hourEnd));
                     echo '<div class="alert alert-success">
                             <p><a href="../student/studentAppointment.php"><<--Return</a></p>
                             <strong>Congratulation !!!</strong> You have taken an appointment. Be there on time the d-day.
-                      </div>';
+                         </div>';
                     $req1 = $bdd->prepare('SELECT nch_hour FROM niche_nch WHERE nch_id = ? ');
                     $req1 -> execute(array((int)$id[1]));
                     $res1 = $req1 -> fetch();                                                      
@@ -134,7 +142,7 @@
                 }
             }else{?>
                 <div class="container">
-                    <table class="table table-bordered table-dark" style="overflow-y=scroll;">
+                    <table class="table table-bordered table-dark">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -160,7 +168,7 @@
                                     <td>'.$hour[0].':'.$hour[1].'</td>
                                     <td>'.$hour[2].':'.$hour[3].'</td>
                                     <td>'.$res['nch_vcn'].' '.'</td>
-                                    <td><p> <a href="../student/studentAppointment.php?a=rdvT_'.$res['nch_id'].'"> Choose </a></p></td>
+                                    <td><p> <a href="../student/studentAppointment.php?a=rdvT_'.$res['nch_id'].'_'.$hour[0].':'.$hour[1].'"> Choose </a></p></td>
                                 </tr>';
                         }
                     ?>
