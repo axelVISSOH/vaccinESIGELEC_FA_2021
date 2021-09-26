@@ -2,8 +2,8 @@
     session_start();
     require_once("../bdd/bddconection.inc.php");    
     function isWeekend($dates) {
-        $date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
-        $weekDay = date('w', strtotime($date));
+        //$date = ''.$dates[2].'-'.$dates[1].'-'.$dates[0];
+        $weekDay = date('w', strtotime($dates));
         if($weekDay == 0 || $weekDay == 6)
             return 1;
         else 
@@ -34,11 +34,12 @@
         }
     }
     function correctDate($dates,$h2,$m2,$bdd){ 
-        $today = new DateTime();  
-        if(isWeekend($dates)==1)
+        $today = date('Y-m-d'); 
+        if( isWeekend($dates)==1 )
             return 1;//date is weekend
-        if($today>$dates)
+        if( $today > $dates )
             return 1;//date is past
+        
         $req = $bdd -> prepare('SELECT nch_hour FROM niche_nch WHERE nch_vst_mail = ? AND nch_date = ?');
         $req -> execute(array($_POST['mail'],$dates));  
         while( $res = $req -> fetch() ){
@@ -53,6 +54,7 @@
             }                
         }
     }
+
     function verifyCerticate($aptmid, $bdd){
         $row = 0;
         $req = $bdd -> prepare('SELECT * FROM certificate_crft WHERE crft_aptm_id = ?');
