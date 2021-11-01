@@ -43,6 +43,7 @@
         <!--header-->
             <?php include("../student/navbarStudent.php")?>
         <!---end header-->
+        <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>        
         <?php
             echo '<div class="alert alert-success">
                                 <strong>Welcome Back: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
@@ -71,7 +72,7 @@
                 }
             }else{?>
             <div class="container">            
-                <div id="accordion" style="overflow-y=scroll;">
+                <div id="accordion">
                     <div class="card">
                         <div class="card-header">
                             <a class="card-link" data-toggle="collapse" href="#collapseOne">
@@ -81,7 +82,7 @@
                         <div id="collapseOne" class="collapse show" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="container">
-                                    <table class="table table-bordered table-dark" style="overflow-y=scroll;">
+                                    <table class="table table-bordered table-dark">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
@@ -130,7 +131,7 @@
                         <div id="collapseTwo" class="collapse show" data-parent="#accordion">
                             <div class="card-body">
                                 <div class="container">
-                                    <table class="table table-bordered table-dark" style="overflow-y=scroll;">
+                                    <table class="table table-bordered table-dark">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
@@ -158,6 +159,11 @@
                     </div>
                 </div>                
             </div>
-        <?php } ?>            
+        <?php 
+                }
+            }else{
+                header('Location: ../log/login.php');//if session is not set       
+            }
+        ?>          
     </body>
 </html>

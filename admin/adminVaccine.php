@@ -23,6 +23,7 @@
     <!--header-->
     <?php include("../admin/navbarAdmin.php")?>
     <!---end header-->
+    <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>
     <?php
         echo '<div class="alert alert-success">
                     <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
@@ -59,5 +60,10 @@
             </div>
         </div>
     </div>
+    <?php    
+        }else{
+            header('Location: ../log/login.php');//if session is not set       
+        }
+    ?>
 </body>
 </html>

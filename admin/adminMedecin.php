@@ -25,6 +25,7 @@
         <!--header-->
         <?php include("../admin/navbarAdmin.php")?>
         <!---end header-->
+        <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>
         <?php
             echo '<div class="alert alert-success">
                     <strong>Administrator: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
@@ -36,8 +37,8 @@
         
         <?php 
             if(isset($_GET['view']) AND isset($_GET['f'])){//if the admin want to see the file
-                echo '<p><a href="../admin/adminMedecin.php"> <<--Return </a></p></br>';                
-                echo '<embed class="container" src="../uploads/'.$_GET['f'].'" width="800px" height="350px" type=\'application/pdf\'/>';
+                echo '<p><a href="../admin/adminMedecin.php"> &lt; Return </a></p><br>';                
+                echo '<embed class="container" src="../uploads/'.$_GET['f'].'" width="800" height="350" type=\'application/pdf\'/>';
             }else{//if the admin accept or reject
                 if( isset($_GET['action']) AND isset($_GET['f1']) ){                                            
                     $f1 = explode('_',$_GET['f1']);
@@ -46,14 +47,14 @@
                             $req1 = $bdd->query('UPDATE visitor_vst SET vst_type=\'medecin\' WHERE vst_mail=\''.$f1[0].'\'');                            
                             echo '<div class="alert alert-success">
                                     <strong>You\'ve just accepted the demand !!!</strong> The new Doctor will be notified.
-                                  </div></br>
-                                  <p><a href="../admin/adminMedecin.php"><<--Return </a></p>';
+                                  </div><br>
+                                  <p><a href="../admin/adminMedecin.php">&lt; Return </a></p>';
                         break;
                         case 0:
                             echo '<div class="alert alert-info">
                                     <strong>You\'ve just rejected the demand !!!</strong> The visitor will be notified.
-                                 </div></br>
-                                  <p><a href="../admin/adminMedecin.php"><<--Return </a></p>';                           
+                                 </div><br>
+                                  <p><a href="../admin/adminMedecin.php">&lt; Return </a></p>';                           
                         break;
                         default: break;
                     }
@@ -91,6 +92,12 @@
                         ?>
                     </tbody>
                 </table>
-            <?php } } ?>
+            <?php 
+                        } 
+                    }
+                }else{
+                    header('Location: ../log/login.php');//if session is not set       
+                }
+            ?>
     </body>
 </html>

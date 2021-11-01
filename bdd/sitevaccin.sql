@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 25 sep. 2021 à 21:41
+-- Généré le : Dim 26 sep. 2021 à 18:44
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -33,21 +33,26 @@ CREATE TABLE IF NOT EXISTS `appointment_aptm` (
   `aptm_nch_id` int(20) NOT NULL,
   `aptm_vst_mail` varchar(255) CHARACTER SET utf8 NOT NULL,
   `aptm_state` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `aptm_hour` varchar(255) NOT NULL,
   PRIMARY KEY (`aptm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `appointment_aptm`
 --
 
-INSERT INTO `appointment_aptm` (`aptm_id`, `aptm_nch_id`, `aptm_vst_mail`, `aptm_state`) VALUES
-(1, 1, 'axelav@gmail.com', 'Waiting'),
-(7, 4, 'axelav@gmail.com', 'Waiting'),
-(9, 2, 'zozo@zozo.com', 'Past'),
-(17, 7, 'zozo@zozo.com', 'Past'),
-(18, 7, 'axelva@gmail.com', 'Waiting'),
-(20, 2, 'axelva@gmail.com', 'Waiting'),
-(21, 6, 'axelva@gmail.com', 'Waiting');
+INSERT INTO `appointment_aptm` (`aptm_id`, `aptm_nch_id`, `aptm_vst_mail`, `aptm_state`, `aptm_hour`) VALUES
+(1, 1, 'axelav@gmail.com', 'Waiting', ''),
+(7, 4, 'axelav@gmail.com', 'Waiting', ''),
+(9, 2, 'zozo@zozo.com', 'Past', ''),
+(17, 7, 'zozo@zozo.com', 'Past', ''),
+(18, 7, 'axelva@gmail.com', 'Waiting', ''),
+(20, 2, 'axelva@gmail.com', 'Waiting', ''),
+(21, 6, 'axelva@gmail.com', 'Waiting', ''),
+(23, 11, 'peacegdn@gmail.com', 'Past', ''),
+(26, 7, 'peacegdn@gmail.com', 'Past', ''),
+(30, 10, 'peacegdn@gmail.com', 'Past', '12:0:12:15'),
+(31, 12, 'peacegdn@gmail.com', 'Past', '13:0:13:15');
 
 -- --------------------------------------------------------
 
@@ -61,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `certificate_crft` (
   `crft_aptm_id` int(11) NOT NULL,
   `crft_path` varchar(255) NOT NULL,
   PRIMARY KEY (`crft_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `certificate_crft`
@@ -85,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `demand_dmd` (
   `dmd_info` varchar(255) CHARACTER SET utf8 NOT NULL,
   `dmd_state` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`dmd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -101,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `niche_nch` (
   `nch_date` date NOT NULL,
   `nch_vcn` varchar(255) NOT NULL,
   PRIMARY KEY (`nch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `niche_nch`
@@ -110,7 +115,11 @@ CREATE TABLE IF NOT EXISTS `niche_nch` (
 INSERT INTO `niche_nch` (`nch_id`, `nch_vst_mail`, `nch_hour`, `nch_date`, `nch_vcn`) VALUES
 (2, 'axela@gmail.com', '8:35:13:15', '2021-09-22', 'AstraZeneca'),
 (5, 'axela@gmail.com', '1:32:0:3', '2021-09-25', 'Moderna'),
-(7, 'axela@gmail.com', '8:50:13:24', '2021-09-24', 'Moderna');
+(8, 'axela@gmail.com', '08:30:12:00', '2021-09-29', 'AstraZeneca'),
+(9, 'axela@gmail.com', '12:0:14:0', '2021-10-02', 'AstraZeneca'),
+(10, 'axela@gmail.com', '12:15:15:0', '2021-10-03', 'Moderna'),
+(12, 'peace2gdn@gmail.com', '13:15:14:0', '2021-09-30', 'AstraZeneca'),
+(13, 'peace2gdn@gmail.com', '13:00:15:30', '2021-10-14', 'Moderna');
 
 -- --------------------------------------------------------
 

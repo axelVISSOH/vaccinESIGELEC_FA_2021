@@ -103,6 +103,7 @@
         <!--header-->
         <?php include("../student/navbarStudent.php")?>
         <!---end header-->
+        <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>
         <?php
             echo '<div class="alert alert-success">
                                 <strong>Welcome Back: </strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'.
@@ -175,6 +176,11 @@
                         </tbody>
                     </table>
                 </div>
-            <?php } ?>
+            <?php 
+                    }
+                }else{
+                    header('Location: ../log/login.php');//if session is not set       
+                }
+            ?>
     </body>
 </html>

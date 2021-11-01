@@ -24,6 +24,7 @@
         <!--header-->
         <?php include("../medecin/navbarMedecin.php")?>
         <!---end header-->
+        <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>        
             <?php
                 echo '<div class="alert alert-success">Welcome Back Dr
                                 <strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'</strong>
@@ -33,38 +34,38 @@
                         case "week_end":
                             echo '<div class="alert alert-warning">
                                 <strong>You can\'t make a niche on weekend or a past day</strong> Please change the date.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;Return </a></p>';
                         break;
                         case "nicheTaken":
                             echo '<div class="alert alert-warning">
                                 <strong>You\'ve already have a niche sheduled at date date and time.</strong> Please change the date or fix the hour.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;Return </a></p>';
                         break;
                         case "null":
                             echo '<div class="alert alert-success">
                                 <strong>Congratulation</strong> Your niche has been scheduled.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;-Return </a></p>';
                         break;
                         case "hours":
                             echo '<div class="alert alert-warning">
                                 <strong>You can\'t choose an end time less than the start time.</strong> Please fix the time.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;Return </a></p>';
                         break;
                         case "missing":
                             echo '<div class="alert alert-warning">
                                 <strong>Lack of Informations </strong> Please fill all the fields.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;Return </a></p>';
                         break;
                         case "dateFormat":
                             echo '<div class="alert alert-danger">
                                 <strong>Bad date format !!!</strong> Please respect the date format.
-                            </div></br>
-                                    <p><a href="../medecin/medecinCreateNiche.php"><<--Return </a></p>';
+                            </div><br>
+                                    <p><a href="../medecin/medecinCreateNiche.php">&lt;Return </a></p>';
                         break;
                         default: break;
                     }
@@ -103,6 +104,11 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?> 
+                <?php 
+                    }
+                }else{
+                    header('Location: ../log/login.php');//if session is not set       
+                }
+            ?> 
     </body>
 </html>

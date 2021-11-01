@@ -24,6 +24,7 @@
         <!--header-->
         <?php include("../medecin/navbarMedecin.php")?>
         <!---end header-->
+            <?php if( isset($_SESSION['surname']) AND isset($_SESSION['name']) ){?>        
             <?php
                 echo '<div class="alert alert-success">Welcome Back Dr
                                 <strong>'.$_SESSION['surname'].' '.$_SESSION['name'].'</strong>
@@ -118,6 +119,11 @@
                             </div>
                         </div>
                     </div>
-                <?php } ?> 
+                <?php 
+                    }
+                }else{
+                    header('Location: ../log/login.php');//if session is not set       
+                }
+            ?>
     </body>
 </html>

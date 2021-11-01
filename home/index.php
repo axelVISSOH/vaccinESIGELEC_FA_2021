@@ -20,27 +20,40 @@
         <!--header-->
         <?php include("../home/navbarHome.php");?>
         <!--end header-->  
+        
+        <h1 class="text-center mt-3"> Welcome to Esig'Vaccination. </h1>
         <div class="row">
-            <div class="col-lg-7 left">
-                <h1>Welcome to Esig'Vaccination.</h1>
+            <div class="col-lg-6 mt-4 center">
                 <img  src="imageVaccin.jpg" class="img-fluid"  alt="A vaccination center picture">
             </div>
-            <div class="col-lg-4 right"> 
+            <div class="col-lg-6 center pt-5"> 
+                
+                <div>
                 <h4 class="info text-center">Informations</h4>
-                <p>
-                    Dear students,</p>
-                <p>
-                    Due to the current health context and concerned about your well-being, ESIGELEC is setting up a small vaccination center within the establishment.
-                    You will therefore be able to make an appointment online and get vaccinated during your off-peak hours.
-                    Once a dose has been assigned, you will receive your certificate in your personal space.
-                    The site is in its genesis do not hesitate to report problems to technical support.
-                </p>
-            </div>            
+                    <p style="font-size:23px;">
+                        Dear students,</p>
+                    <p style="font-size:18px;">
+                        Due to the current health context and concerned about your well-being, ESIGELEC is setting up a small vaccination center within the establishment.
+                        You will therefore be able to make an appointment online and get vaccinated during your off-peak hours.
+                        Once a dose has been assigned, you will receive your certificate in your personal space.
+                        The site is in its genesis do not hesitate to report problems to technical support.
+                    </p>
+                </div>
+                
+            </div>              
         </div>
-        <p class="infoT">Trust Us !!!</p>          
+        <div class="mt-5"> </div>
+        <div class="mt-5" style="font-size:0px;"> ceci est le pied de Page </div>
+        <div class="mt-5" style="font-size:0px;"> ceci est le pied de Page </div>        
+        <div class="mt-5" style="font-size:0px;"> ceci est le pied de Page </div>        
+        <p class="infoT">Trust Us !!!</p>    
+        <div class="mt-5"> </div>           
+        <div class="mt-5"> </div>
+        <div class="mt-5" style="font-size:0px;"> ceci est le pied de Page </div>
+        <div class="mt-5" style="font-size:0px;"> ceci est le pied de Page </div>
         <!--footer-->
-        <?php include("../home/footer.php")?>
-        <!--end footer-->  
-    </div>     
+          <?php include("../home/footer.php")?>
+        <!--end footer-->
+    </div>
 </body>
 </html>
